@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/baseconfig",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\BaseConfig\\": "app/",
+            "Modules\\BaseConfig\\Database\\Factories\\": "database/factories/",
+            "Modules\\BaseConfig\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\BaseConfig\\Tests\\": "tests/"
+        }
+    }
+}

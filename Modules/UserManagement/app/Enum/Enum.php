@@ -1,11 +1,12 @@
 <?php
+
 namespace Modules\UserManagement\Enum;
 
 /**
  * @enum
  */
 enum UserType: int {
-    case ADMIN = 1;
-    case MANAGER = 2;
-    case STAFF = 3;
+    const ADMIN = 1;
+    const MANAGER = 2;
+    const STAFF = 3;
 }

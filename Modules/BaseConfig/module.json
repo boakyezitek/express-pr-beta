@@ -1,0 +1,11 @@
+{
+    "name": "BaseConfig",
+    "alias": "baseconfig",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\BaseConfig\\Providers\\BaseConfigServiceProvider"
+    ],
+    "files": []
+}

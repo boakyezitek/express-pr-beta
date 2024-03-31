@@ -1,3 +1,5 @@
 {
-    "UserManagement": true
+    "UserManagement": true,
+    "Config": true,
+    "BaseConfig": true
 }
