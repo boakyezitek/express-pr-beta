@@ -10,8 +10,18 @@ use Modules\UserManagement\Transformers\StaffResource;
 
 class StaffController extends Controller
 {
+    /**
+     * The staff repository instance.
+     *
+     * @var StaffRepository
+     */
     private $staffRepository;
 
+    /**
+     * Create a new instance of the controller.
+     *
+     * @param StaffRepository $staffRepository
+     */
     public function __construct(StaffRepository $staffRepository)
     {
         $this->staffRepository = $staffRepository;
