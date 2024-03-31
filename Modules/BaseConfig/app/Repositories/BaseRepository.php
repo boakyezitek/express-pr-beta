@@ -39,4 +39,17 @@ class BaseRepository implements BaseRepositoryInterface
     {
         return $model->delete();
     }
+
+    /**
+     * Get a single staff member with the given ID.
+     *
+     * @param int $id
+     * @return Model
+     */
+
+    public function getSingleModel($id) {
+        return $this->model->query()
+            ->where('id', $id)
+            ->first();
+    }
 }
