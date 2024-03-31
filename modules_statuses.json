@@ -1,5 +1,6 @@
 {
     "UserManagement": true,
     "Config": true,
-    "BaseConfig": true
+    "BaseConfig": true,
+    "PropertyManagement": true
 }

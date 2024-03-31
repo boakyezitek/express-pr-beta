@@ -1,0 +1,11 @@
+{
+    "name": "PropertyManagement",
+    "alias": "propertymanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\PropertyManagement\\Providers\\PropertyManagementServiceProvider"
+    ],
+    "files": []
+}
