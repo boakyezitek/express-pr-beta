@@ -18,11 +18,15 @@ use Modules\UserManagement\Http\Controllers\VendorController;
  *
 */
 
-Route::get('staff/visible-on-website', StaffController::class)->names('visible-on-website');
+Route::get('/staff/visible-on-website', [StaffController::class,
+    'visibleOnWebsite'
+])->name('visible-on-website');
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
     Route::apiResource('staff', StaffController::class)->names('staff');
-    Route::apiResource('clients', ClientController::class)->names('client');
-    Route::apiResource('tenants', TenantController::class)->names('usermanagement');
-    Route::apiResource('vendors', VendorController::class)->names('usermanagement');
+    Route::apiResource('clients', ClientController::class)->names('clients');
+    Route::apiResource('tenants', TenantController::class)->names('tenants');
+    Route::apiResource('vendors', VendorController::class)->names('vendors');
 });
+
+
