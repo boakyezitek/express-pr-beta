@@ -13,10 +13,21 @@ class VendorFactory extends Factory
 
     /**
      * Define the model's default state.
+     *
+     * @return array<string, mixed> The default state of the model.
      */
     public function definition(): array
     {
-        return [];
+        return [
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'email' => $this->faker->freeEmail(),
+            'phone' => $this->faker->phoneNumber(),
+            'address' => $this->faker->secondaryAddress(),
+            'city' => $this->faker->city(),
+            'state' => $this->faker->state(),
+            'zipcode' => $this->faker->postcode(),
+        ];
     }
 }
 
