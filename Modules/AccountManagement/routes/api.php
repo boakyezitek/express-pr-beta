@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\PropertyManagement\Http\Controllers\PropertyManagementController;
+use Modules\AccountManagement\Http\Controllers\AccountManagementController;
 
 /*
  *--------------------------------------------------------------------------
@@ -14,8 +14,6 @@ use Modules\PropertyManagement\Http\Controllers\PropertyManagementController;
  *
 */
 
-Route::get('/v1/properties', [PropertyManagementController::class, 'index'])->name('property');
-
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('propertymanagement', PropertyManagementController::class)->names('propertymanagement');
+    Route::apiResource('accountmanagement', AccountManagementController::class)->names('accountmanagement');
 });

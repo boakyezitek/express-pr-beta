@@ -4,17 +4,37 @@ namespace Modules\PropertyManagement\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Modules\PropertyManagement\Repositories\PropertyReposiotry;
+use Modules\PropertyManagement\Transformers\PropertyResource;
 
 class PropertyManagementController extends Controller
 {
     /**
+     * @var PropertyReposiotry
+     */
+    private PropertyReposiotry $propertyReposiotry;
+
+    /**
+     * PropertyManagementController constructor.
+     * @param PropertyReposiotry $propertyReposiotry
+     */
+    public function __construct(PropertyReposiotry $propertyReposiotry)
+    {
+        $this->propertyReposiotry = $propertyReposiotry;
+    }
+
+    /**
      * Display a listing of the resource.
+     * @return \Illuminate\Http\Response
+     * @see \Illuminate\Http\Request
+     * @see \Modules\PropertyManagement\Resources\PropertyResource
      */
     public function index()
     {
-        //
+        $properties = $this->propertyReposiotry->all();
 
-        return response()->json([]);
+        return PropertyResource::collection($properties);
     }
 
     /**
@@ -22,9 +42,11 @@ class PropertyManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('property.create'), Response::HTTP_FORBIDDEN);
 
-        return response()->json([]);
+        $property = $this->propertyReposiotry->create($request->all());
+
+        return PropertyResource::make($property);
     }
 
     /**
@@ -32,9 +54,15 @@ class PropertyManagementController extends Controller
      */
     public function show($id)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('property.show'), Response::HTTP_FORBIDDEN);
 
-        return response()->json([]);
+        $property = $this->propertyReposiotry->find($id);
+
+        if (!$property) {
+            return response()->json(['message' => 'Property not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        return PropertyResource::make($property);
     }
 
     /**
@@ -42,9 +70,11 @@ class PropertyManagementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('property.update'), Response::HTTP_FORBIDDEN);
 
-        return response()->json([]);
+        $property = $this->propertyReposiotry->update($id, $request->all());
+
+        return PropertyResource::make($property);
     }
 
     /**
@@ -52,8 +82,10 @@ class PropertyManagementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort_unless(auth()->user()->tokenCan('property.destroy'), Response::HTTP_FORBIDDEN);
 
-        return response()->json([]);
+        $this->propertyReposiotry->destroy($id);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

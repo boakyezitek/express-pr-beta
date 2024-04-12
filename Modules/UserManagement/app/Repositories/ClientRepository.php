@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-
+use Modules\PropertyManagement\Models\Property;
 
 class ClientRepository extends BaseRepository
 {

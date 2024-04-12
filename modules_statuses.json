@@ -2,5 +2,6 @@
     "UserManagement": true,
     "Config": true,
     "BaseConfig": true,
-    "PropertyManagement": true
+    "PropertyManagement": true,
+    "AccountManagement": true
 }

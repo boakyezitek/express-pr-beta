@@ -52,4 +52,59 @@ class BaseRepository implements BaseRepositoryInterface
             ->where('id', $id)
             ->first();
     }
+
+    /**
+     * Attach related models to the given attribute.
+     *
+     * @param  Model $model
+     * @param  array    $attributes
+     * @param  array    $relatedModels
+     * @return void
+     */
+
+     public function attachRelatedModels(Model $model, array $attributes, $relatedModels) {
+        foreach ($relatedModels as $attributeKey => $relationshipName) {
+            if (isset($attributes[$attributeKey])) {
+                $model->{$relationshipName}()->attach($attributes[$attributeKey]);
+            }
+        }
+    }
+
+        /**
+     * Sync related models for the given property.
+     *
+     * @param  Model $model
+     * @param  array    $attributes
+     * @param  array    $relatedModels
+     * @return void
+     */
+    public function syncRelatedModels(Model $model, array $attributes, $relatedModels)
+    {
+
+        foreach ($relatedModels as $attributeKey => $relationshipName) {
+            if (isset($attributes[$attributeKey])) {
+                $model->{$relationshipName}()->sync($attributes[$attributeKey]);
+            }
+        }
+    }
+
+    /**
+     * Detach related models from the given property.
+     *
+     * @param  Model $model
+     * @param  array    $relatedModels
+     * @return void
+     */
+    public function removeRelatedModels($model, $relatedModels)
+    {
+        foreach ($relatedModels as $attributeKey => $relationshipName) {
+            if ($model->{$relationshipName}) {
+
+                $relatedModels = $model->{$relationshipName};
+
+                $relatedModelIds = $relatedModels->pluck('id')->all();
+                $model->{$relationshipName}()->detach($relatedModelIds);
+            }
+        }
+    }
 }
